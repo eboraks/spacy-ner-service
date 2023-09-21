@@ -1,0 +1,7 @@
+#  pip install -U pip setuptools wheel
+fastapi>=0.103.0,<0.104.0
+uvicorn>=0.23.2,<0.24.1
+spacy>=3.6.0,<3.6.8
+# python -m spacy download en_core_web_lg
+spacyopentapioca>=0.1.7,<0.1.9
+pytest>=7.4.0,<7.5.0
