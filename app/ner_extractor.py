@@ -35,7 +35,7 @@ class EntityLinkerExtractor:
             results.append(ent)
             # print((span.text, span.kb_id_, span.label_, span._.description, span._.score))
 
-        logging.info(f"ExtractNER, Identify {len(results)} entities")
+        logging.info(f"EntityLinker, Identify {len(results)} entities")
         return results
 
 

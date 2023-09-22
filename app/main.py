@@ -31,19 +31,24 @@ async def spacy_ner(query: TextQuery) -> List[Entities]:
 
     entities1 = ner.identify(query.text)
     entities2 = entityLinker.identify(query.text)
-    consolidate(entities1, entities2)
-    return entities1 + entities2
+    entities = consolidate(entities1, entities2)
+    return entities
 
 
 def consolidate(ners, entlinker):
+    if len(entlinker) == 0:
+        return ners
+
     ner_text = [ent.text for ent in ners]
     el_text = [ent.text for ent in entlinker]
 
     results = []
     for idx, text in enumerate(ner_text):
         if text in el_text:
+            logging.info(f"Consolidate Entities: {text} is in {' '.join(el_text)}")
             results.append(entlinker[el_text.index(text)])
         else:
+            logging.info(f"Consolidate Entities: {text} is not in {' '.join(el_text)}")
             results.append(ners[idx])
 
     return results
